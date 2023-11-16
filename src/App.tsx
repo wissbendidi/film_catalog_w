@@ -1,9 +1,11 @@
 import './App.css'
+import { Test } from './components/composite/Test'
 
 function App() {
-
   return (
-    <p className="text-3xl font-bold underline">Scooby-doo</p>
+    <>
+      <Test />
+    </>
   )
 }
 

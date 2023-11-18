@@ -12,10 +12,23 @@ export function Test(){
 
   console.log(movies)
   console.log('Movie details : ', movie1details)
-
   return (
     <div>
-      <h1 className="underline"> Scooby-doo by-doo !</h1>
+      <h1 className="w-100 text-4xl m-3 p-3"> 🎬🍿 Movie Library </h1>
+      <div className="grid grid-cols-4 gap-4">
+        {Object.keys(movies).map((movieId) => {
+          const movie = movies[movieId]
+          return (
+            <div key={movieId}>
+              <img src={`https://image.tmdb.org/t/p/w500/${movie.posterUrl}`} alt={movie.title} />
+              <div className="text-center">
+                <div className="font-bold">{movie.title}</div>
+                <div>{movie.voteAverage} / 10 ({movie.voteCount} votes)</div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

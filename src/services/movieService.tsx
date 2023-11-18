@@ -21,8 +21,8 @@ export function useNowPlayingMovies() {
 
 export function useMovieDetails(movieId: string) {
   const {movieDetails, isLoading, isError} = useFetchMovieDetailsService(movieId)
-  // wait for the movie details to be fetched before returning
-  if(isLoading) return null
+  if(isLoading || isError) 
+    return null
   const movieDetailsSet : MovieDetails = {
     movieId: movieDetails.id,
     title: movieDetails.title,

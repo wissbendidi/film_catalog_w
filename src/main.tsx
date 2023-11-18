@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { DarkModeSwitcher } from './components/composite/DarkModeSwitcher';
 
 import {
   QueryClient,
@@ -22,7 +23,10 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <main className="bg-gray-100 dark:bg-gray-900">
+        <DarkModeSwitcher />
+        <App />
+      </main>
     </QueryClientProvider>
   </React.StrictMode>,
 )

@@ -6,3 +6,8 @@
 #root{
   padding: 0px;
 }
+
+html{
+  overscroll-behavior: none;
+
+}

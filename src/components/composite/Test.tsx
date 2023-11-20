@@ -1,5 +1,6 @@
 import { useNowPlayingMovies, useMovieDetails } from "../../services/movieService"
-
+import { PosterCard } from "./Cards"
+import SearchBar from '../../components/composite/SearchBar';
 export function Test(){
   const {movies,isError,isLoading} = useNowPlayingMovies()
   const movieIdExists = movies !== undefined && Object.keys(movies).length > 0
@@ -10,22 +11,23 @@ export function Test(){
 
   if(isError) return <div>Something went wrong...</div>
 
-  console.log(movies)
-  console.log('Movie details : ', movie1details)
+  //console.log(movies)
+  //console.log('Movie details : ', movie1details)
   return (
     <div>
-      <h1 className="w-100 text-4xl m-3 p-3"> 🎬🍿 Movie Library </h1>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="flex justify-between items-center w-full mb-10">
+        <h1 className="text-4xl"> 🎬🍿 Movie Library </h1>
+        <span>
+          <SearchBar/>
+        </span>
+      </div>
+      <div className="grid grid-cols-4 gap-8">
         {Object.keys(movies).map((movieId) => {
           const movie = movies[movieId]
           return (
-            <div key={movieId}>
-              <img src={`https://image.tmdb.org/t/p/w500/${movie.posterUrl}`} alt={movie.title} />
-              <div className="text-center">
-                <div className="font-bold">{movie.title}</div>
-                <div>{movie.voteAverage} / 10 ({movie.voteCount} votes)</div>
-              </div>
-            </div>
+            <>
+              <PosterCard key={movieId} posterUrl={`https://image.tmdb.org/t/p/w500/${movie.posterUrl}`} voteAverage={movie.voteAverage} voteCount={movie.voteCount} />
+            </>
           )
         })}
       </div>

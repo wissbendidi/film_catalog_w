@@ -27,7 +27,7 @@ export interface MovieCollection {
 
 /*  Now playing movies  */
 async function fetchNowPlayingMovies(){
-  console.log('HTTP CALL !')
+  //console.log('HTTP CALL !')
   const res = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=2021-07-01&release_date.lte=2021-07-31', {
     headers: {
       Authorization: TMDBAuthorizationBearer
@@ -41,6 +41,7 @@ export function useFetchNowPlayingMoviesService() {
     queryKey: ['nowPlayingMovies'], 
     queryFn: fetchNowPlayingMovies
   })
+  console.log('Films : ', data?.results)
   return { movies: data?.results, isLoading, isError }
 }
 

@@ -2,7 +2,7 @@
 
 export default function SearchComponent() {
     return (
-        <div className="flex items-center justify-end">
+        <div className="flex items-center">
             <div className="flex space-x-1">
                 <input
                     type="text"

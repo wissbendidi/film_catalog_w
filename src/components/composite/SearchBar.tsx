@@ -53,7 +53,7 @@ export default function SearchComponent(props) {
           placeholder="Search for movie..."
           className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
         />
-        <ul id="results" className="list-group absolute z-10 w-full" ref={ulRef} style={{ flexDirection: 'column' }}>
+        <ul id="results" className="list-group absolute z-10 w-full max-h-60 overflow-y-auto" ref={ulRef} style={{ flexDirection: 'column' }}>
           {choices.map((choice, index) => (
             <li key={index} className="main-menu__app-menu">
               <Card>

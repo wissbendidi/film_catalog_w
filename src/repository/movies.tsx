@@ -41,7 +41,6 @@ export function useFetchNowPlayingMoviesService() {
     queryKey: ['nowPlayingMovies'], 
     queryFn: fetchNowPlayingMovies
   })
-  console.log('Films : ', data?.results)
   return { movies: data?.results, isLoading, isError }
 }
 
@@ -68,3 +67,28 @@ export function useFetchMovieDetailsService(movieId: string) {
   })
   return { movieDetails: data, isLoading, isError }
 }
+
+export async function SearchMovieTitles(query: string){
+  console.log('Searching the titles of movies : ', query)
+  if(query === '') return null
+  const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: TMDBAuthorizationBearer
+    }
+  }
+  const res = await fetch(url, options)
+  return res.json()
+}
+
+export function useFSearchMovieTitlesService(query: string) {
+  if(query === '') return { movieTitles: null, isLoading: false, isError: false }
+  const {data, isLoading, isError} = useQuery({
+    queryKey: ['SearchMovieTitles', query], 
+    queryFn: () => SearchMovieTitles(query)
+  })
+  return {movieTitles: data, isLoading, isError }
+}
+

@@ -1,6 +1,28 @@
+import{ useRef, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 
+const Card = ({ children }) => {
+  return (
+    <div className="card">
+      <div className="card-body">{children}</div>
+    </div>
+  );
+};
 
-export default function SearchComponent() {
+export default function SearchComponent(props) {
+    const { choices, onInputChange } = props;
+  const ulRef = useRef();
+  const inputRef = useRef();
+  useEffect(() => {
+    inputRef.current.addEventListener('click', (event) => {
+      event.stopPropagation();
+      ulRef.current.style.display = 'flex';
+      onInputChange(event);
+    });
+    document.addEventListener('click', (event) => {
+      ulRef.current.style.display = 'none';
+    });
+  }, []);
     return (
         <form className="max-w-sm px-4">
             <div className="relative">
@@ -20,9 +42,24 @@ export default function SearchComponent() {
                 </svg>
                 <input
                     type="text"
+                    ref={inputRef}
+                    onChange={onInputChange}
                     placeholder="Search for movie..."
                     className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
                 />
+                <ul id="results" className="list-group" ref={ulRef} style={{ flexDirection: 'column' }}>
+                {choices.map((choice, index) => {
+                    return (
+                        <li className="main-menu__app-menu" key={index}>
+                           <Card>
+                          <Link href="/{choice.movieId}">
+                            <a>{choice.title}</a>
+                          </Link>
+                          </Card>
+                        </li>
+                      );
+                })}
+            </ul>
             </div>
         </form>
     );

@@ -1,4 +1,4 @@
-import { useFetchNowPlayingMoviesService, useFetchMovieDetailsService, MovieCollection, MovieDetails } from "../repository/movies"
+import { useFetchNowPlayingMoviesService, useFetchMovieDetailsService, MovieCollection, MovieDetails, SearchMovieTitles } from "../repository/movies"
 
 const moviesSet : MovieCollection = {}
 
@@ -35,5 +35,16 @@ export function useMovieDetails(movieId: string) {
     genres: movieDetails.genres
   }
   return movieDetailsSet
+}
+
+export async function getMovieTitles (query : string){
+  const movieTitles = await SearchMovieTitles(query)
+  return movieTitles.results.map(movieTitle => {return {
+    movieId: movieTitle.id,
+    title: movieTitle.title,
+
+  } } )
+
+
 }
 

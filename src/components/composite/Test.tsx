@@ -1,11 +1,13 @@
 import { useNowPlayingMovies, useMovieDetails } from "../../services/movieService"
 import { PosterCard } from "./Cards"
+import { Link } from "react-router-dom"
+
 import SearchBar from '../../components/composite/SearchBar';
 export function Test(){
   const {movies,isError,isLoading} = useNowPlayingMovies()
-  const movieIdExists = movies !== undefined && Object.keys(movies).length > 0
-  const movieId = movieIdExists ? movies[Object.keys(movies)[0]]['movieId'] : ''
-  const movie1details = useMovieDetails(movieId)
+  //const movieIdExists = movies !== undefined && Object.keys(movies).length > 0
+  //const movieId = movieIdExists ? movies[Object.keys(movies)[0]]['movieId'] : ''
+  //const movie1details = useMovieDetails(movieId)
   
   if(isLoading) return <div>Loading...</div>
 
@@ -25,9 +27,9 @@ export function Test(){
         {Object.keys(movies).map((movieId) => {
           const movie = movies[movieId]
           return (
-            <>
-              <PosterCard key={movieId} posterUrl={`https://image.tmdb.org/t/p/w500/${movie.posterUrl}`} voteAverage={movie.voteAverage} voteCount={movie.voteCount} />
-            </>
+            <Link key={movieId} to={`/movie/${movieId}`}>
+              <PosterCard posterUrl={`https://image.tmdb.org/t/p/w500/${movie.posterUrl}`} voteAverage={movie.voteAverage} voteCount={movie.voteCount} />
+            </Link>
           )
         })}
       </div>

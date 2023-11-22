@@ -61,6 +61,7 @@ async function fetchMovieDetails(movieId: string){
 }
 
 export function useFetchMovieDetailsService(movieId: string) {
+  if(movieId === '') return { movieDetails: null, isLoading: false, isError: false }
   const {data, isLoading, isError} = useQuery({
     queryKey: ['movieDetails', movieId], 
     queryFn: () => fetchMovieDetails(movieId)

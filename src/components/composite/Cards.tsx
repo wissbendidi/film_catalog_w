@@ -10,9 +10,13 @@ interface PosterCardProps extends PropsWithChildren {
   voteCount: number;
 }
 export function PosterCard({posterUrl, title, voteAverage } : PosterCardProps){
+  let voteAverageString = voteAverage.toString()
+  if(voteAverageString.length > 3){
+    voteAverageString = voteAverageString.substring(0, 3)
+  }
   return (
     <div className="w-100 h-100 relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-all duration-200 ease-in-out">
-      <img src={`https://image.tmdb.org/t/p/w500${posterUrl}`} alt={title} className="w-full h-full object-cover" />
+      <img src={`https://image.tmdb.org/t/p/w500${posterUrl}`} alt={title} className="object-cover" />
       
       <div className="absolute bottom-2 right-2 bg-backgroundBlue dark:bg-white bg-opacity-75 rounded-full flex items-center">
         <svg width="36" height="36">
@@ -27,7 +31,7 @@ export function PosterCard({posterUrl, title, voteAverage } : PosterCardProps){
             strokeDasharray={`${voteAverage * 9.42}, 100`}
             transform="rotate(-90) translate(-36)"
           />
-          <text x="50%" y="50%" textAnchor="middle" dy=".3em" className="stroke-white dark:stroke-black">{voteAverage}</text>
+          <text x="50%" y="50%" textAnchor="middle" dy=".3em" className="stroke-white dark:stroke-black">{voteAverageString}</text>
         </svg>
         
       </div>

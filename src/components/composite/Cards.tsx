@@ -15,6 +15,7 @@ export function PosterCard({posterUrl, title, voteAverage } : PosterCardProps){
     voteAverageString = voteAverageString.substring(0, 3)
   }
   return (
+  
     <div className="w-100 h-100 relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-all duration-200 ease-in-out">
       <img src={`https://image.tmdb.org/t/p/w500${posterUrl}`} alt={title} className="object-cover" />
       

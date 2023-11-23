@@ -80,7 +80,6 @@ async function fetchMovieCredits(movieId: string){
 }
 
 export async function SearchMovieTitles(query: string){
-  console.log('Searching the titles of movies : ', query)
   if(query === '') return null
   const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`
   const options = {
@@ -131,7 +130,6 @@ export function useFSearchMovieTitlesService(query: string) {
     queryKey: ['SearchMovieTitles', query], 
     queryFn: () => SearchMovieTitles(query)
   })
-  console.log('SEARCH : res.json() : ', data)
   return {movieTitles: data, isLoading, isError }
 }
 

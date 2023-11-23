@@ -20,25 +20,18 @@ export function Test() {
       setFoundMovies({})
       return
     }
-    console.log('currentSearchBarValue after modif : ', currentSearchBarValue)
-    console.log(`got ${JSON.stringify(value)}`);
     setSearchInput(value)
     const choices = await getMovieTitles(value)
     const choicesTitles = choices.results.map((choice: any) => {return ({
       movieId: choice.id,
       title: choice.title,
     })})
-    // put the choices in movies following the same format as the movies
     setFoundMovies(choices.set)
-  
-    console.debug('movies after change : ', foundMovies)
     setChoices(choicesTitles)
   };
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Something went wrong...</div>;
   if (movies === null) return <div>Something went wrong...</div>;
-  //console.log('Movies (ayaaa): ', movies)
-  //console.log('CurrentSearchBarValue : ', currentSearchBarValue)
   return (
     <main className="flex flex-col gap-6 min-h-screen min-w-full p-4 md:p-12 dark:backgroundBlue">
       <div>

@@ -16,7 +16,6 @@ export function Details() {
   if (movie === undefined || movieCredits === undefined || movieImagesObject === undefined) return <div>Something went wrong...</div>;
   movieCredits.cast = movieCredits.cast.filter((castMember: any) => castMember.profile_path !== null)
   movieCredits.cast.sort((a: any, b: any) => b.popularity - a.popularity)
-  console.log('Movie : ', movie)
   movie.releaseDate = moment(movie.releaseDate).format('ll')
   return (
     <div className="relative">
@@ -42,18 +41,18 @@ export function Details() {
           <div className="w-1/6">
             <PosterCard posterUrl={`https://image.tmdb.org/t/p/w500/${movie.posterUrl}`} voteAverage={movie.voteAverage} voteCount={movie.voteCount} />
           </div>
-          <div className="w-5/6 text-left mb-10">
+          <div className="w-5/6 text-left -mb-40">
             <div className="h-3/6"></div>
             <div className="h-3/6">
               <h3 className="text-2xl m-3">{movie.title}</h3>
-              <div className="m-3 overflow-auto">{movie.synopsis}</div>
+              <div className="m-3 flex flex-col items-center flex-wrap gap-4 justify-center sm:flex-row sm:items-end">{movie.synopsis}</div>
               <p className="m-3 italic">{movie.genres.map((genre: any) => genre.name).join(', ')}</p>
               <p className="m-3">{movie.releaseDate}</p>
             </div>
           </div>
         </div>
         <div className="row-span-1 -my-20">
-          <span className="flex w-full text-left text-3xl m-0 p-0">Credits</span>
+          <span className="flex w-full text-left text-3xl m-0 p- mt-20">Credits</span>
           <div className="flex overflow-x-auto">
             {movieCredits?.cast.map((castMember: any) => (
               <div key={castMember.id} className="flex-none w-32 m-2">

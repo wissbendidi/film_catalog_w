@@ -25,7 +25,7 @@ export function Details() {
         style={{ 
           backgroundImage: `url(${backgroundImageUrl})`,
           backgroundSize: 'cover',
-          filter: 'blur(8px)',
+          filter: 'blur(24px)',
           margin: '-10%',
           zIndex: 0
         }}
@@ -42,7 +42,7 @@ export function Details() {
           <div className="w-1/6">
             <PosterCard posterUrl={`https://image.tmdb.org/t/p/w500/${movie.posterUrl}`} voteAverage={movie.voteAverage} voteCount={movie.voteCount} />
           </div>
-          <div className="w-5/6 text-left">
+          <div className="w-5/6 text-left mb-10">
             <div className="h-3/6"></div>
             <div className="h-3/6">
               <h3 className="text-2xl m-3">{movie.title}</h3>

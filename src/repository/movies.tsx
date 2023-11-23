@@ -131,6 +131,7 @@ export function useFSearchMovieTitlesService(query: string) {
     queryKey: ['SearchMovieTitles', query], 
     queryFn: () => SearchMovieTitles(query)
   })
+  console.log('SEARCH : res.json() : ', data)
   return {movieTitles: data, isLoading, isError }
 }
 

@@ -49,12 +49,25 @@ export function useMovieImages(movieId: string) {
 }
 export async function getMovieTitles (query : string){
   const movieTitles = await SearchMovieTitles(query)
-  return movieTitles.results.map(movieTitle => {return {
+  console.log('movieTitles : ', movieTitles)
+  // convert movieTitles to the same format as moviesSet, so it will be an object with movieId as key and movie as value
+  const movieTitlesSet : MovieCollection = {}
+  for(const movieTitle of movieTitles.results){
+    movieTitlesSet[movieTitle.id] = {
+      movieId: movieTitle.id,
+      title: movieTitle.title,
+      posterUrl: movieTitle.poster_path,
+      voteAverage: movieTitle.vote_average,
+      voteCount: movieTitle.vote_count
+    }
+  }
+  console.log('movieTitles after modif : ', movieTitlesSet)
+  movieTitles['set'] = movieTitlesSet
+  return movieTitles
+  /* return movieTitles.results.map(movieTitle => {return {
     movieId: movieTitle.id,
     title: movieTitle.title,
 
-  } } )
-
-
+  } } ) */
 }
 

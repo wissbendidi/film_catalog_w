@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // Card component
-const Card = ({ children }) => {
+const Card = ({ children : any }) => {
   return (
     <div className="bg-white border p-4 rounded-md shadow-md">
       <div className="card-body">{children}</div>
@@ -12,13 +12,13 @@ const Card = ({ children }) => {
 };
 
 // SearchComponent
-export default function SearchComponent(props) {
+export default function SearchComponent(props : any) {
   const { choices, onInputChange } = props;
   const ulRef = useRef();
   const inputRef = useRef();
 
   useEffect(() => {
-    inputRef.current.addEventListener('click', (event) => {
+    inputRef.current.addEventListener('click', (event : any) => {
       event.stopPropagation();
       ulRef.current.style.display = 'flex';
       onInputChange(event);

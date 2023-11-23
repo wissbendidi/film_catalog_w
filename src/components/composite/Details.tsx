@@ -13,7 +13,6 @@ export function Details() {
   const movieImages = movieImagesObject?.backdrops;
   const backgroundImageUrl = `https://image.tmdb.org/t/p/w500/${movie?.posterUrl}`
 
-  console.log('Movie images : ', movieImagesObject);
   if (movie === null || movieCredits === null || movieImagesObject === null) return <div>Loading...</div>;
   if (movie === undefined || movieCredits === undefined || movieImagesObject === undefined) return <div>Something went wrong...</div>;
   movieCredits.cast = movieCredits.cast.filter((castMember: any) => castMember.profile_path !== null)

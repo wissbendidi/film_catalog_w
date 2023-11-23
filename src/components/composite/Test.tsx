@@ -9,24 +9,16 @@ import { useState } from "react";
 import SearchBar from "../../components/composite/SearchBar";
 export function Test() {
   const [choices, setChoices] = useState([]);
-  const  onInputChange = async (event) => {
-    console.log(`got ${JSON.stringify(event.target.value)}`);
+  const  onInputChange = async (event : any) => {
     const  choices = await getMovieTitles(event.target.value);
-
     setChoices(choices);
   };
 
   const { movies, isError, isLoading } = useNowPlayingMovies();
-  //const movieIdExists = movies !== undefined && Object.keys(movies).length > 0
-  //const movieId = movieIdExists ? movies[Object.keys(movies)[0]]['movieId'] : ''
-  //const movie1details = useMovieDetails(movieId)
-
   if (isLoading) return <div>Loading...</div>;
-
   if (isError) return <div>Something went wrong...</div>;
+  if (movies === null) return <div>Something went wrong...</div>;
 
-  //console.log(movies)*ù$
-  //console.log('Movie details : ', movie1details)
   return (
     <div>
       <div className="flex justify-between items-center w-full mb-10">

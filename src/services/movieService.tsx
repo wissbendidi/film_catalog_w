@@ -49,10 +49,11 @@ export function useMovieImages(movieId: string) {
 }
 export async function getMovieTitles (query : string){
   const movieTitles = await SearchMovieTitles(query)
+  if(movieTitles === undefined || movieTitles === null)
+    return null
   return movieTitles.results.map((movieTitle : any) => {return {
     movieId: movieTitle.id,
     title: movieTitle.title,
-
   } } )
 
 

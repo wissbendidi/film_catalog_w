@@ -23,7 +23,7 @@ export function Test(){
           <SearchBar/>
         </span>
       </div>
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid grid-cols-6 gap-8">
         {Object.keys(movies).map((movieId) => {
           const movie = movies[movieId]
           return (

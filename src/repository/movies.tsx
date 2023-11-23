@@ -28,7 +28,8 @@ export interface MovieCollection {
 /*  Now playing movies  */
 async function fetchNowPlayingMovies(){
   //console.log('HTTP CALL !')
-  const res = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=2021-07-01&release_date.lte=2021-07-31', {
+  //https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1
+  const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', {
     headers: {
       Authorization: TMDBAuthorizationBearer
     }
@@ -67,4 +68,53 @@ export function useFetchMovieDetailsService(movieId: string) {
     queryFn: () => fetchMovieDetails(movieId)
   })
   return { movieDetails: data, isLoading, isError }
+}
+
+//'https://api.themoviedb.org/3/movie/movie_id/credits?language=en-US';
+
+async function fetchMovieCredits(movieId: string){
+  console.log('Fetching credits of movie : ', movieId)
+  //const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: TMDBAuthorizationBearer
+    }
+  }
+  const res = await fetch(url, options)
+  return res.json()
+}
+
+export function useFetchMovieCreditsService(movieId: string) {
+  if(movieId === '') return { movieCredits: null, isLoading: false, isError: false }
+  const {data, isLoading, isError} = useQuery({
+    queryKey: ['movieCredits', movieId], 
+    queryFn: () => fetchMovieCredits(movieId)
+  })
+  return { movieCredits: data, isLoading, isError }
+}
+
+async function fetchMovieImages(movieId: string){
+  console.log('Fetching images of movie : ', movieId)
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/images`
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: TMDBAuthorizationBearer
+    }
+  }
+  const res = await fetch(url, options)
+  return res.json()
+}
+
+export function useFetchMovieImagesService(movieId: string) {
+  if(movieId === '') return { movieImages: null, isLoading: false, isError: false }
+  const {data, isLoading, isError} = useQuery({
+    queryKey: ['movieImages', movieId], 
+    queryFn: () => fetchMovieImages(movieId)
+  })
+  return { movieImages: data, isLoading, isError }
 }

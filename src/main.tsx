@@ -23,8 +23,8 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <main className="bg-backgroundLightGray dark:bg-gray-900">
-        <div className="flex justify-end w-full px-20 pt-5">
+      <main className="bg-backgroundLightGray dark:bg-gray-900 overflow-hidden">
+        <div className="flex justify-end w-full px-20 pt-5"  style={{position: 'relative', zIndex: 10}}>
           <DarkModeSwitcher />
         </div>
         <App />

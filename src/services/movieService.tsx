@@ -1,4 +1,4 @@
-import { useFetchNowPlayingMoviesService, useFetchMovieDetailsService, MovieCollection, MovieDetails } from "../repository/movies"
+import { useFetchNowPlayingMoviesService, useFetchMovieDetailsService, useFetchMovieCreditsService, useFetchMovieImagesService, MovieCollection, MovieDetails } from "../repository/movies"
 
 const moviesSet : MovieCollection = {}
 
@@ -37,3 +37,13 @@ export function useMovieDetails(movieId: string) {
   return movieDetailsSet
 }
 
+// /* Credits of a movie  */
+export function useMovieCredits(movieId: string) {
+  const {movieCredits, isLoading, isError} = useFetchMovieCreditsService(movieId)
+  return movieCredits
+}
+
+export function useMovieImages(movieId: string) {
+  const {movieImages, isLoading, isError} = useFetchMovieImagesService(movieId)
+  return movieImages
+}

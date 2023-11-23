@@ -11,7 +11,7 @@ export function Details() {
   const movieCredits = useMovieCredits(movieId);
   const movieImagesObject = useMovieImages(movieId);
   const movieImages = movieImagesObject?.backdrops;
-  const backgroundImageUrl = `https://image.tmdb.org/t/p/w500/${movie?.posterUrl}`
+  const backgroundImageUrl = `https://image.tmdb.org/t/p/original/${movieImages?.[0].file_path}`
 
   if (movie === null || movieCredits === null || movieImagesObject === null) return <div>Loading...</div>;
   if (movie === undefined || movieCredits === undefined || movieImagesObject === undefined) return <div>Something went wrong...</div>;
@@ -52,7 +52,7 @@ export function Details() {
             </div>
           </div>
         </div>
-        <div className="row-span-1 mt-20">
+        <div className="row-span-1 -my-20">
           <span className="flex w-full text-left text-3xl m-0 p-0">Credits</span>
           <div className="flex overflow-x-auto">
             {movieCredits?.cast.map((castMember: any) => (
@@ -70,13 +70,13 @@ export function Details() {
             ))}
           </div>
         </div>
-        <div className="row-span-1">
+        <div className="row-span-1 -mt-60">
           <span className="flex w-full text-left text-3xl">Images</span>
           <div className="flex overflow-x-auto">
             {movieImages?.map((image: any) => (
               <div key={image.file_path} className="flex-none m-2">
                 <img 
-                  src={`https://image.tmdb.org/t/p/w500/${image.file_path}`} 
+                  src={`https://image.tmdb.org/t/p/w1280/${image.file_path}`} 
                   alt="Movie Image" 
                   className="w-full h-full object-cover" 
                 />

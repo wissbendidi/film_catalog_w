@@ -10,11 +10,14 @@ import SearchBar from "../../components/composite/SearchBar";
 
 export function Test() {
   const [choices, setChoices] = useState([]);
-  const  onInputChange = async (event : any) => {
-    const  choices = await getMovieTitles(event.target.value);
+  const [searchInput, setSearchInput] = useState(""); // Add searchInput state
+
+  const onInputChange = async (value) => {
+    console.log(`got ${JSON.stringify(value)}`);
+    setSearchInput(value);
+    const choices = await getMovieTitles(value);
     setChoices(choices);
   };
-
   const { movies, isError, isLoading } = useNowPlayingMovies();
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Something went wrong...</div>;
@@ -27,6 +30,7 @@ export function Test() {
           <h1 className="text-2xl md:text-4xl mb-2 md:mb-0"> 🎬🍿 Movie Library </h1>
           <span>
             <SearchBar choices={choices} onInputChange={onInputChange} />
+
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">

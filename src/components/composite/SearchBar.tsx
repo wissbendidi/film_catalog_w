@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // Card component
-const Card = ({ children : any }) => {
+const Card = ({ children }) => {
   return (
     <div className="bg-white border p-4 rounded-md shadow-md">
       <div className="card-body">{children}</div>
@@ -12,13 +12,13 @@ const Card = ({ children : any }) => {
 };
 
 // SearchComponent
-export default function SearchComponent(props : any) {
+export default function SearchComponent(props) {
   const { choices, onInputChange } = props;
   const ulRef = useRef();
   const inputRef = useRef();
 
   useEffect(() => {
-    inputRef.current.addEventListener('click', (event : any) => {
+    inputRef.current.addEventListener('click', (event) => {
       event.stopPropagation();
       ulRef.current.style.display = 'flex';
       onInputChange(event);
@@ -49,12 +49,12 @@ export default function SearchComponent(props : any) {
         <input
           type="text"
           ref={inputRef}
-          onChange={onInputChange}
+          onChange={(event) => onInputChange(event.target.value)}
           placeholder="Search for movie..."
           className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-full outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
         />
         <ul id="results" className="list-group absolute z-10 w-full max-h-60 overflow-y-auto" ref={ulRef} style={{ flexDirection: 'column' }}>
-          {choices.map((choice, index) => (
+          {choices && choices.map((choice, index) => (
             <li key={index} className="main-menu__app-menu">
               <Card>
                 <Link to={`/movie/${choice.movieId}`} className="text-indigo-600 font-semibold">

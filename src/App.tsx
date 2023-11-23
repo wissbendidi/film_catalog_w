@@ -1,5 +1,5 @@
 import './App.css';
-import { Test } from './components/composite/Test';
+import { HomePage } from './components/composite/HomePage';
 import { Details } from './components/composite/Details';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ function App() {
       <div className="md:flex text-black dark:text-white px-20 pb-20">
           <Router>
             <Routes>
-              <Route path="/" element={<Test />}/>
+              <Route path="/" element={<HomePage />}/>
               <Route path="/movie/:movieId" element={<Details />}/>
             </Routes>
           </Router>

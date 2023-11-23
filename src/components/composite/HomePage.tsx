@@ -6,9 +6,9 @@ import { PosterCard } from "./Cards";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import SearchBar from "../../components/composite/SearchBar";
+import SearchBar from "./SearchBar";
 
-export function Test() {
+export function HomePage() {
   const [choices, setChoices] = useState([]);
   const [searchInput, setSearchInput] = useState(""); // Add searchInput state
   const [currentSearchBarValue, changeInputSearch] = useState('') // Add currentSearchBarValue state

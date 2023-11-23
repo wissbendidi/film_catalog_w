@@ -12,12 +12,11 @@ export function Details() {
   const movieImagesObject = useMovieImages(movieId);
   const movieImages = movieImagesObject?.backdrops;
   const backgroundImageUrl = `https://image.tmdb.org/t/p/original/${movieImages?.[0].file_path}`
-
   if (movie === null || movieCredits === null || movieImagesObject === null) return <div>Loading...</div>;
   if (movie === undefined || movieCredits === undefined || movieImagesObject === undefined) return <div>Something went wrong...</div>;
   movieCredits.cast = movieCredits.cast.filter((castMember: any) => castMember.profile_path !== null)
   movieCredits.cast.sort((a: any, b: any) => b.popularity - a.popularity)
-
+  console.log('Movie : ', movie)
   movie.releaseDate = moment(movie.releaseDate).format('ll')
   return (
     <div className="relative">
@@ -48,6 +47,7 @@ export function Details() {
             <div className="h-3/6">
               <h3 className="text-2xl m-3">{movie.title}</h3>
               <div className="m-3 overflow-auto">{movie.synopsis}</div>
+              <p className="m-3 italic">{movie.genres.map((genre: any) => genre.name).join(', ')}</p>
               <p className="m-3">{movie.releaseDate}</p>
             </div>
           </div>

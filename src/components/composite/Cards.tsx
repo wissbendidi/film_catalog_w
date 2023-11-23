@@ -15,7 +15,8 @@ export function PosterCard({width, height, posterUrl, title, voteAverage } : Pos
     voteAverageString = voteAverageString.substring(0, 3)
   }
   return (
-    <div className="relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-all duration-200 ease-in-out">
+  
+    <div className="w-100 h-100 relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-all duration-200 ease-in-out">
       <img src={`https://image.tmdb.org/t/p/w500${posterUrl}`} alt={title} className="object-cover" />
       
       <div className="absolute bottom-2 right-2 bg-backgroundBlue dark:bg-white bg-opacity-75 rounded-full flex items-center">
